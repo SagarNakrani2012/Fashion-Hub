@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="admin.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <header>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Admin Portal</h1>
+            <h2>
+                <a href="/home">Home</a>
+            </h2>
+        </div>
+    </header>
+
+    <main>
+        <h2>Upload New Product</h2>
+        <form id="product-form" action="/upload-product" method="post" enctype="multipart/form-data">
+            <label for="name">Product Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" required>
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+            
+            <label for="file">Image:</label>
+            <input type="file" name="image" id="file" required>
+            
+            <input type="submit" id="sub" value="Upload Product">
+            <h3>{{respond}}</h3>
+        </form>
+
+         <h2>Orders Received</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th style="border: 1px solid #ddd; padding: 8px;">Name</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Mobile Number</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Address</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Product Name</th> <!-- New column for product name -->
+                    <th style="border: 1px solid #ddd; padding: 8px;">Total Amount</th>  <!-- New column for total amount -->
+                    <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each orders}}
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.name}}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.mobileNumber}}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.address}}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.productName}}</td> <!-- Display product name -->
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.totalAmount}}</td>  <!-- Display total amount -->
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.status}}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px;">{{this.createdAt}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

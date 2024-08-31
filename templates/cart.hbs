@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    {{>header}}
+
+    <main>
+        <h2>Order Summary</h2>
+        <div class="cart-summary">
+            {{#each cart}}
+                <div class="cart-item">
+                    <img src="{{this.product.imageUrl}}" alt="{{this.product.name}}">
+                    <div class="item-details">
+                        <h3>{{this.product.name}}</h3>
+                        <p>Description: {{this.product.description}}</p>
+                        <p>Quantity: {{this.quantity}}</p>
+                        <p class="price">Price: ₹{{this.product.price}}</p>
+                        <p class="price">Total: ₹{{multiply this.product.price this.quantity}}</p>
+
+                        <form action="/remove-from-cart" method="POST" style="margin-top: 10px;">
+                            <input type="hidden" name="productId" value="{{this.product._id}}">
+                            <button type="submit" class="remove-button">Remove</button>
+                        </form>
+
+                        
+                    </div>
+                </div>
+            {{/each}}
+            <hr>
+            <div class="total-amount">
+                <h3>Total Amount: ₹{{totalAmount}}</h3>
+            </div>
+
+            <form action="/checkout" method="GET">
+                <button type="submit" class="checkout-button">Proceed to Checkout</button>
+            </form>
+        </div>
+    </main>
+    
+    {{>footer}}
+</body>
+</html>

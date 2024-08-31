@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{product.name}} | Clothing Store</title>
+  <link rel="stylesheet" href="products.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS -->
+</head>
+<body>
+  {{>header}}
+
+  <main>
+        <div class="products-grid">
+            {{#each products}}
+                <div class="product-card">
+                    <img src="{{this.imageUrl}}" alt="{{this.name}}">
+                    <h3>{{this.name}}</h3>
+                    <p class="product-description">{{this.description}}</p>
+                    <p class="price">₹{{this.price}}</p>
+                    <form action="/add-to-cart" method="POST">
+                        <input type="hidden" name="productId" value="{{this._id}}">
+                        <div class="quantity">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" name="quantity" id="quantity" value="1" min="1">
+                        </div>
+                        <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                    </form>
+                </div>
+            {{/each}}
+        </div>
+  </main>
+
+  {{>footer}}
+  <script>
+    // JavaScript to handle auto-scroll on hover
+    document.addEventListener("DOMContentLoaded", function() {
+      const descriptions = document.querySelectorAll(".product-description");
+      
+      descriptions.forEach(function(description) {
+        description.addEventListener("mouseenter", function() {
+          let scrollHeight = description.scrollHeight - description.clientHeight; // Calculate the total scrollable height
+          description.scrollInterval = setInterval(function() {
+            description.scrollTop += 1; // Scroll down by 1 pixel
+            if (description.scrollTop >= scrollHeight) {
+              clearInterval(description.scrollInterval); // Stop scrolling when bottom is reached
+              description.scrollInterval = setInterval(function() {
+                description.scrollTop -= 1; // Scroll up by 1 pixel
+                if (description.scrollTop <= 0) {
+                  clearInterval(description.scrollInterval); // Stop scrolling when top is reached
+                }
+              }, 20); // Adjust this value to control scroll speed upwards
+            }
+          }, 60); // Adjust this value to control scroll speed downwards
+        });
+
+        description.addEventListener("mouseleave", function() {
+          clearInterval(description.scrollInterval); // Stop scrolling on mouse leave
+          description.scrollTop = 0; // Reset scroll position
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Payment Gateway</title>
+    <link rel="stylesheet" href="fake-payment.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    {{>header}}
+
+    <main>
+        <h2>Fake Payment Gateway</h2>
+        <p>Please enter your details to complete the purchase.</p>
+        
+        <!-- Form for payment and contact details -->
+        <form action="/process-payment" method="POST">
+            <!-- Contact Details -->
+            <h3>Contact Information</h3>
+            <input type="text" placeholder="Name" name="name" required>
+            <input type="tel" placeholder="Mobile Number" name="mobileNumber" required>
+            <textarea placeholder="Address" name="address" rows="4" required></textarea>
+            
+            <!-- Payment Details -->
+            <h3>Payment Information</h3>
+            <input type="text" placeholder="Card Number" name="cardNumber" required>
+            <input type="text" placeholder="Expiry Date (MM/YY)" name="expiryDate" required>
+            <input type="text" placeholder="CVV" name="cvv" required>
+            <input type="text" placeholder="Cardholder Name" name="cardholderName" required>
+            
+            <button type="submit" class="checkout-button">Pay ₹{{totalAmount}}</button>
+        </form>
+    </main>
+
+
+    {{>footer}}
+</body>
+</html>

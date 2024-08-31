@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="slider.css">
+</head>
+<body>
+    {{>header}}
+<main>
+    <section id="main-content">
+        <h2>Featured Products</h2>
+        <div class="slider-container">
+            <div class="slider" id="productSlider">
+                {{#each products}}
+                    <div class="product-slide">
+                        <img src="{{this.imageUrl}}" alt="{{this.name}}" class="slider-image">
+                    </div>
+                {{/each}}
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </section>
+</main>
+
+{{>footer}}
+
+<script>
+    let slideIndex = 0;
+    const slidesToShow = 5; // Number of slides to show at once
+    const slideWidth = 200; // Slide width as defined in CSS
+
+    function moveSlide(n) {
+        const slider = document.getElementById('productSlider');
+        const totalSlides = slider.children.length;
+        slideIndex += n;
+
+        // Loop back to start or end if out of bounds
+        if (slideIndex >= totalSlides - slidesToShow + 1) {
+            slideIndex = 0;
+        } else if (slideIndex < 0) {
+            slideIndex = totalSlides - slidesToShow;
+        }
+
+        // Move slider
+        slider.style.transform = `translateX(${-slideIndex * (slideWidth + 20)}px)`;
+    }
+
+    // Automatically move slide every 3 seconds
+    setInterval(() => moveSlide(1), 3000);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        moveSlide(0); // Initial call to set the position
+    });
+</script>
+</body>
+</html>

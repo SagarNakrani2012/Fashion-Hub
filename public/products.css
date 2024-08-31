@@ -1,0 +1,116 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+.product-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.product-details {
+  margin-left: 30px;
+  max-width: 500px;
+}
+
+.product-details h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.5em;
+  color: #e60000;
+  margin-bottom: 20px;
+}
+
+.product-options label,
+.quantity label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.product-options select,
+.quantity input {
+  padding: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 150px;
+}
+
+.add-to-cart-button {
+  background-color: #ff6600;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-cart-button:hover {
+  background-color: #ff3300;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 400px; /* Set a fixed height for consistent card size */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+.product-card img {
+  width: auto;
+  height: 150px; /* Fixed height to ensure all images are the same size */
+  object-fit: contain; /* Ensures the entire image is visible without cropping */
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.product-card p {
+  font-size: 1em;
+  color: #333;
+  margin: 5px 0;
+  max-height: 40px; /* Limit the height of the description */
+  overflow: hidden; /* Hide any overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis (...) if text is too long */
+}
+
+.product-card .price {
+  font-weight: bold;
+  color: #e60000;
+  margin-bottom: 10px;
+}
+
+main {
+  flex: 1;
+  padding-bottom: 70px;
+  padding-top: 107px;
+}
